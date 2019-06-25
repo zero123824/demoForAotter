@@ -1,0 +1,5 @@
+idv\jmproject\usercenter\model\repository\UserRepository.class
+idv\jmproject\usercenter\controller\RegisterController.class
+idv\jmproject\usercenter\UsercenterApplication.class
+idv\jmproject\usercenter\model\User.class
+idv\jmproject\usercenter\service\RedisService.class
