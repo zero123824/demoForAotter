@@ -14,5 +14,41 @@
     5.#安裝openjdk
         $ docker pull openjdk
 
-將此專案下載後，java run 此spring boot專案
-java -jar target/usercenter-0.0.1-SNAPSHOT.jar
+將此git專案下載後，java run 此spring boot專案
+
+```
+$ java -jar target/usercenter-0.0.1-SNAPSHOT.jar
+```
+
+springboot專案已啟動並在localhost:8080連接
+
+POST : http://localhost:8080/api/user
+
+​	requestBody:{"userName":"tomcat"}
+
+設計說明
+```mermaid
+
+graph TD
+
+A[POST註冊請求] -->B(redis server確認是否同時間username已被鎖住)
+
+    B --> C{是否上鎖}
+
+    C -->|上鎖| D[使用新的:userName + counter獲取redis鎖]
+    
+    D --> C
+
+    C -->|未上鎖| E[存入db]
+    
+    E --> G{確認db內user是否存在}
+    
+    G -->|存在| H[使用新的:userName + counter存入db]
+    
+    H --> G
+    
+    G -->|不存在| I[存入db並回傳完整user資料]
+
+    F[註冊user確認存在流程圖]
+
+```
