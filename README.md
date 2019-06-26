@@ -1,5 +1,5 @@
 # demoForAotter
-使用Docker啟動專案流程  
+使用Docker設定所需的db連線  
 
     1.所需前置環境:假定主機已安裝docker  
     
@@ -14,12 +14,5 @@
     5.#安裝openjdk
         $ docker pull openjdk
 
-
-
-#進入mysql 
-docker exec -it c_mysql /bin/bash
-
-進入mysql docker後
-mysql -uroot -p123456
-
-
+將此專案下載後，java run 此spring boot專案
+java -jar target/usercenter-0.0.1-SNAPSHOT.jar
